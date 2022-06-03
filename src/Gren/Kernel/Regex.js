@@ -1,6 +1,5 @@
 /*
 
-import Elm.Kernel.List exposing (fromArray)
 import Maybe exposing (Just, Nothing)
 import Regex exposing (Match)
 
@@ -55,11 +54,11 @@ var _Regex_findAtMost = F3(function(n, re, str)
 				? __Maybe_Just(submatch)
 				: __Maybe_Nothing;
 		}
-		out.push(A4(__Regex_Match, result[0], result.index, number, __List_fromArray(subs)));
+		out.push(A4(__Regex_Match, result[0], result.index, number, subs));
 		prevLastIndex = re.lastIndex;
 	}
 	re.lastIndex = lastIndex;
-	return __List_fromArray(out);
+	return out;
 });
 
 
@@ -81,7 +80,7 @@ var _Regex_replaceAtMost = F4(function(n, re, replacer, string)
 				? __Maybe_Just(submatch)
 				: __Maybe_Nothing;
 		}
-		return replacer(A4(__Regex_Match, match, arguments[arguments.length - 2], count, __List_fromArray(submatches)));
+		return replacer(A4(__Regex_Match, match, arguments[arguments.length - 2], count, submatches));
 	}
 	return string.replace(re, jsReplacer);
 });
@@ -101,7 +100,7 @@ var _Regex_splitAtMost = F3(function(n, re, str)
 	}
 	out.push(string.slice(start));
 	re.lastIndex = restoreLastIndex;
-	return __List_fromArray(out);
+	return out;
 });
 
 var _Regex_infinity = Infinity;
