@@ -1,7 +1,6 @@
 /*
 
 import Maybe exposing (Just, Nothing)
-import Regex exposing (Match)
 
 */
 
@@ -54,7 +53,12 @@ var _Regex_findAtMost = F3(function(n, re, str)
 				? __Maybe_Just(submatch)
 				: __Maybe_Nothing;
 		}
-		out.push(A4(__Regex_Match, result[0], result.index, number, subs));
+        out.push({
+            __$match: result[0],
+            __$index: result.index,
+            __$number: number,
+            __$submatches: subs
+        });
 		prevLastIndex = re.lastIndex;
 	}
 	re.lastIndex = lastIndex;
@@ -80,7 +84,12 @@ var _Regex_replaceAtMost = F4(function(n, re, replacer, string)
 				? __Maybe_Just(submatch)
 				: __Maybe_Nothing;
 		}
-		return replacer(A4(__Regex_Match, match, arguments[arguments.length - 2], count, submatches));
+        return {
+            __$match: match,
+            __$index: arguments[arguments.length - 2],
+            __$number: count,
+            __$submatches: submatches
+        };
 	}
 	return string.replace(re, jsReplacer);
 });
